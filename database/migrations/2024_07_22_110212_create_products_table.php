@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('supplier_id');
             $table->integer('quantity');
             $table->float('price');
+            $table->string('image')->nullable();
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('supplier_id')->references('id')->on('suppliers');

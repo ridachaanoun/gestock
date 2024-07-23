@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Storage;
 class Product extends Model
 {
     use HasFactory;
@@ -16,6 +16,8 @@ class Product extends Model
         'quantity',
         'price',
         'user_id',
+        'image'
+
     ];
 
     public function category()
@@ -37,5 +39,10 @@ class Product extends Model
     {
         return $this->belongsToMany(Inventory::class);
     }
+        // Accessor to get the full URL of the image
+        public function getImageUrlAttribute()
+        {
+            return $this->image ? Storage::url($this->image) : null;
+        }
 }
 
